@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#Bash script that displays the PID, along with the process name, of processes whose name contain the word
+while true; do
+  pgrep -f "bash" | while read -r pid; do
+    read -r _ name < "/proc/$pid/comm"
+    [ "$name" = "bash" ] && echo "$pid $name"
+  done
+  sleep 1
+done &
+sleep 1
+echo "$$ bash"
+echo "$$ bash"
