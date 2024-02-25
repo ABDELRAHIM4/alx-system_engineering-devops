@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 #Write a Bash script that displays
+stop()
+{
+echo "I am invincible!!!"
+}
+trap stop SIGTERM
 while true; do
 echo "To infinity and beyond"
 sleep 2
-if ["$(kill -l $1)" = "TERM" ]; then
-echo "I am invincible!!!"
-pkill -f 7-highlander
-fi
 done
