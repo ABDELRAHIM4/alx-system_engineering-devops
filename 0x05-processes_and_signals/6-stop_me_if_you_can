@@ -4,4 +4,3 @@ pkill -f 4-to_infinity_and_beyond
 while ps -ef | grep -v grep | grep 4-to_infinity_and_beyond > /dev/null; do
 sleep 1
 done
-echo "Terminated"
