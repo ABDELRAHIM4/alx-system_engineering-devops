@@ -1,0 +1,3 @@
+#!/bin/bash
+
+# Read the Apache log file and process it using awk
