@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#Write a Bash script that displays listening ports.
+echo "Active Internet connections (only servers)"
+echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
+
+# Loop through each line of the TCP socket list
+while IFS= read -r tcp_socket; do
+    # Extract the local port from the TCP socket line
+    local_port=$(echo "$tcp_socket" | awk '{print $5}')
+
+    # Loop through each line of the process list
+    while IFS= read -r process; do
+        # Extract the PID and process name from the process line
+        pid=$(echo "$process" | awk '{print $1}')
+        name=$(echo "$process" | awk '{print $2}')
+
+        # Check if the PID is listening on the local port
+        if ss -p | grep -q "pid=$pid"; then
+            # Print the TCP socket line with the PID and process name
+            echo "$tcp_socket $pid/$name"
+        fi
+    done <<< "$processes"
+done <<< "$tcp_sockets"
+
+# Print a separator
+echo
+
+# Print the header for UNIX domain sockets
+echo "Active UNIX domain sockets (only servers)"
+echo "Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path"
+
+# Loop through each line of the UDP socket list
+while IFS= read -r udp_socket; do
+    # Extract the local port from the UDP socket line
+    local_port=$(echo "$udp_socket" | awk '{print $5}')
+
+    # Loop through each line of the process list
+    while IFS= read -r process; do
+        # Extract the PID and process name from the process line
+        pid=$(echo "$process" | awk '{print $1}')
+        name=$(echo "$process" | awk '{print $2}')
+
+        # Check if the PID is listening on the local port
+        if ss -p | grep -q "pid=$pid"; then
+            # Print the UDP socket line with the PID and process name
+            echo "$udp_socket $pid/$name"
+        fi
+    done <<< "$processes"
+done <<< "$udp_sockets"
