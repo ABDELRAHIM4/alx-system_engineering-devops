@@ -9,6 +9,6 @@ file {'/etc/nginx/sites-available/default':
   content  => "server {
   	listen 80 default_server;
 	location / {
-	return 200 "Hello World!";
+	return 200 'Hello World!';
 }
 }"
