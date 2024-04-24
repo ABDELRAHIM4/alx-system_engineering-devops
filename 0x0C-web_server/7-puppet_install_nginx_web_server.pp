@@ -10,5 +10,5 @@ file {'/etc/nginx/sites-available/default':
   	listen 80 default_server;
 	location / {
 	return 200 'Hello World!';
+}",
 }
-}"
