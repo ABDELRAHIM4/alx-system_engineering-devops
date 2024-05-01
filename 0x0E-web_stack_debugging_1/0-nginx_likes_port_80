@@ -5,7 +5,11 @@ apt-get update
 apt-get install -y nginx
 service nginx start
 fi
-if ! sudo netstat -tl | grep 'nginx' > /dev/null; then
+if ! sudo netstat -tl | grep 80 > /dev/null; then
 sudo sed -i 's/list [^;]*;/listen 80;/g' /etc/nginx/nginx.conf
 sudo service nginx restart
+fi
+if ! netstat -tlnp | grep -q 'nginx:[[:space:]]*http'; then
+    echo "Error: Nginx is not listening on port 80"
+    exit 1
 fi

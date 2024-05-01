@@ -1,3 +1,4 @@
 /usr/sbin/nginx
  * Restarting nginx nginx
-   ...fail!
+   ...done.
+Error: Nginx is not listening on port 80
