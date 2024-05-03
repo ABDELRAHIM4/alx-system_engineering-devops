@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 #Bash script with the minimum number of commands to automate your fix.
-if ! command -v nginx; then
-apt-get update --quiet
-apt-get install -y nginx
-fi
+rm /etc/nginx/sites-enabled/default
 #listen on port 80
-if ! ss -tl | grep 80 > /dev/null; then
-sed -i 's/listen [^;]*;/listen 80;/g' /etc/nginx/nginx.conf
+ln -s /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
 service nginx restart
-fi
-echo -n ""
