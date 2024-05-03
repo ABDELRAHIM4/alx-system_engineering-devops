@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Bash script that will display information about subdomains.
+
+get_sub() {
+	local domain="$1"
+	local subdomain="${2:-www}"
+	dig "${subdomain}.${domain}" +short | grep -v '^$' | awk '{print "The subdomain "$1" is a A record and points to" $0}'
+	}
+for subdomain in www ib-0 web-01 web-02; do
+	get_sub "$1" "$subdomain"
+done
