@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-#Bash script with the minimum number of commands to automate your fix.
-command -v nginx || apt-get update && apt-get install -y nginx && service nginx start
-sudo netstat -tl | grep 80 > /dev/null || sudo sed -i 's/list [^;]*;/listen 80;/g' /etc/nginx/nginx.conf || sudo service nginx restart
+#Bash script with the minimum number of commands to automate your file
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
+kill "$(pgrep 'nginx' | head -1)"
