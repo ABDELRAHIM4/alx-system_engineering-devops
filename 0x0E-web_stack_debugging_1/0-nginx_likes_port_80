@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
-#Bash script with the minimum number of commands to automate your fix.
-if ! command -v nginx; then
-apt-get update
-apt-get install -y nginx
-service nginx start
-fi
-if ! sudo netstat -tl | grep 80 > /dev/null; then
-sudo sed -i 's/list [^;]*;/listen 80;/g' /etc/nginx/nginx.conf
-sudo service nginx restart
-fi
-if ! netstat -tlnp | grep -q 'nginx:[[:space:]]*http'; then
-    echo "Error: Nginx is not listening on port 80"
-    exit 1
-fi
+# Bash script with the minimum number of commands to automate your fix.
+
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart

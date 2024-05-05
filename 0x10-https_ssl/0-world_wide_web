@@ -3,9 +3,13 @@
 
 get_sub() {
 	local domain="$1"
-	local subdomain="${2:-www}"
-	dig "${subdomain}.${domain}" +short | grep -v '^$' | awk '{print "The subdomain "$1" is a A record and points to" $0}'
+	local subdomain="$2"
+	dig "${subdomain}.${domain}" +short | grep -v '^$' | awk -v subd="$subdomain" '{print "The subdomain "subd" is a A record and points to " $0}'
 	}
-for subdomain in www ib-0 web-01 web-02; do
+if [ -n "$2" ]; then
+	get_sub "$1" "$2"
+else
+for subdomain in www lb-01 web-01 web-02; do
 	get_sub "$1" "$subdomain"
 done
+fi
