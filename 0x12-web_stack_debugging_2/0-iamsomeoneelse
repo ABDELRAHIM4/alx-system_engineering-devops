@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#write a Bash script that accepts one argument
+if [ $# -ne 1 ]; then
+echo " ERROR"
+fi
+user=$1
+su $user -c "whoami"
