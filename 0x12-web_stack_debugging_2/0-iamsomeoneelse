@@ -4,4 +4,8 @@ if [ $# -ne 1 ]; then
 echo " ERROR"
 fi
 user=$1
+if ! id -u "$1" > /dev/null; then
+	echo ""$!" not found"
+	exit 1
+fi
 sudo -u $user "whoami"
