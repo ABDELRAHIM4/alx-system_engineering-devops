@@ -2,6 +2,7 @@
 #write a Bash script that accepts one argument
 if [ $# -ne 1 ]; then
 echo " ERROR"
+exit
 fi
 user=$1
 if ! id -u "$1" > /dev/null; then
