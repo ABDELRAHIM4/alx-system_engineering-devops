@@ -2,11 +2,11 @@
 #write a Bash script that accepts one argument
 if [ $# -ne 1 ]; then
 echo " ERROR"
-exit
+exit 1
 fi
 user=$1
 if ! id -u "$1" > /dev/null; then
-	echo ""$!" not found"
+	echo "'$1' not found"
 	exit 1
 fi
-sudo -u $user "whoami"
+sudo -u "$user" "whoami"
