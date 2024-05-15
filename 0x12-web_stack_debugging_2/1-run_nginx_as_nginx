@@ -7,5 +7,5 @@ listen 8080;
 }
 EOF
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled
-sudo service nginx stop
+#sudo service nginx stop
 sudo -u nginx /usr/sbin/nginx
