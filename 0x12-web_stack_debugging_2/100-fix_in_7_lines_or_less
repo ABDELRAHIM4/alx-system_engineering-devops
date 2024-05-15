@@ -2,11 +2,6 @@
 #nginx must be running as nginx user
 sudo service nginx stop
 sudo chown -R nginx:nginx /var/log/nginx /var/lib/nginx
-echo "server {
-	listen 8080;
-	location / {
-	return 200;
-}
-}" > /etc/nginx/sites-available/default
+echo "server {listen 8080;}" > /etc/nginx/sites-available/default
 sed -i 's/user\*snginx;/user nginx nginx;/g' /etc/nginx/nginx.conf
 sudo service nginx start
