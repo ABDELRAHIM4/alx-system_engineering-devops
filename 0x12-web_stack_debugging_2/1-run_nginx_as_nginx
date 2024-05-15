@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #nginx must be running as nginx user
-sudo chown -R nginx:nginx /etc/nginx /var/log/nginx /var/www/html /run/nginx
+sudo chown -R nginx:nginx /etc/nginx /var/log/nginx /var/www/html
 sudo tee /etc/nginx/sites-available/default << EOF
 server { 
 listen 8080;
