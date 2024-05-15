@@ -7,5 +7,6 @@ listen 8080;
 }
 EOF
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled
-sed -i 's/#user nginx;/user nginx;/' /etc/nginx/nginx.conf
+sudo service nginx stop
 sudo -u nginx /usr/sbin/nginx
+sudo service nginx start
