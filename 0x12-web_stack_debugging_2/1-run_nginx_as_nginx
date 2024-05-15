@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 #nginx must be running as nginx user
 sudo service nginx stop
-sudo chown -R nginx:nginx /etc/nginx
-sudo tee /etc/nginx/sites-available/default << EOF
-server { 
-listen 8080;
-}
-EOF
-sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+sudo chown -R nginx:nginx /var/log/nginx /var/lib/nginx
+#sudo tee /etc/nginx/sites-available/default << EOF
+#server { 
+#listen 8080;
+#}
+#EOF
+#sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+sed -i 's/user\*snginx;/user nginx nginx;/g' /etc/nginx/nginx.conf
 sudo -u nginx /usr/sbin/nginx
