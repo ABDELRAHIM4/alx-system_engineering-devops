@@ -9,5 +9,3 @@ echo "server {
 }
 }" > /etc/nginx/nginx.conf
 sudo service nginx restart
-ps auxff | grep ngin[x]
-nc -z 0 8080 ; echo $?
