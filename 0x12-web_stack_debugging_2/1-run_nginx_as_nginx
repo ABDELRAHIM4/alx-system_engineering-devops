@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #nginx must be running as nginx user
 sudo service nginx stop
+sudo chown -R nginx:nginx /etc/nginx
 echo "server { 
 	listen 8080;
 	server_name localhost;
