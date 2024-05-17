@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 #nginx must be running as nginx user
-sudo service nginx stop
+#sudo service nginx stop
 sudo chown -R nginx:nginx /etc/nginx
-echo "server { 
+echo "
+user nginx;
+worker_processes auto;
+events {
+worker_connections 1024;
+}
+http {
+	server { 
 	listen 8080;
 	server_name localhost;
 	location / {
 		return 200 'Hello from nginx!';
+}
 }
 }" > /etc/nginx/nginx.conf
 sudo service nginx restart
