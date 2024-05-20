@@ -21,4 +21,4 @@ if __name__ == "__main__":
         writer.writeheader()
         #print(writer)
         for task in todo_js:
-            writer.writerow({"USER_ID": emp, "USERNAME" : response.get("name"), "TASK_COMPLETED_STATUS" : task.get('completed'), "TASK_TITLE" : task.get('title')})
+            writer.writerow({"USER_ID": "{}".format(str(emp)), "USERNAME" : "{}".format(str(response.get("name"))), "TASK_COMPLETED_STATUS" : "{}".format(str(task.get('completed'))), "TASK_TITLE" : str(task['title'])})
