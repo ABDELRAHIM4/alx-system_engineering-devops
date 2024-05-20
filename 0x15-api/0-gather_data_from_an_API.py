@@ -7,13 +7,10 @@ if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/'
     res = requests.get(url + "users/{}".format(emp))
     response = res.json()
-    url1 = f'https://jsonplaceholder.typicode.com/todos/{emp}'
-    #todo = requests.get(url1)
     params = {"userId" : emp}
     todo = requests.get(url + "todos", params=params)
     todo_js = todo.json()
     com = []
-    print(todo_js)
     for task in todo_js:
         if task.get('completed') is  True:
             com.append(task.get('title'))
