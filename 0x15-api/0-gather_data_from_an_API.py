@@ -3,18 +3,21 @@
 import sys
 import requests
 if __name__ == "__main__":
-    emp = int(sys.argv[1])
-    url = f'https://jsonplaceholder.typicode.com/users/{emp}'
-    res = requests.get(url)
+    emp = sys.argv[1]
+    url = 'https://jsonplaceholder.typicode.com/'
+    res = requests.get(url + "users/{}".format(emp))
     response = res.json()
     url1 = f'https://jsonplaceholder.typicode.com/todos/{emp}'
-    todo = requests.get(url1)
+    #todo = requests.get(url1)
+    params = {"userId" : emp}
+    todo = requests.get(url + "todos", params=params)
     todo_js = todo.json()
     com = []
+    print(todo_js)
     for task in todo_js:
-        if todo_js.get('completed') is  True:
-            com.append(todo_js.get('title'))
+        if task.get('completed') is  True:
+            com.append(task.get('title'))
     print("Employee {} is done with tasks({}/{}):".format(response.get("name"), len(com), len(todo_js)))
     for task in todo_js:
-        if todo_js.get('completed') is  True:
-            print(todo_js.get('title'))
+        if task.get('completed') is  True:
+            print(task.get('title'))
