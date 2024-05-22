@@ -17,4 +17,4 @@ if __name__ == "__main__":
     print("Employee {} is done with tasks({}/{}):".format(response.get("name"), len(com), len(todo_js)))
     for task in todo_js:
         if task.get('completed') is  True:
-            print(task.get('title'))
+            print("  {}".format(task.get('title')))
