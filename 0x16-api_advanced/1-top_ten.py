@@ -5,7 +5,7 @@ import requests
 
 def top_ten(subreddit):
     """ prints the titles of the first 10 hot post"""
-    url = f"https://www.reddit.com/r/{subreddit}/hot"
+    url = "https://www.reddit.com/r/{}/hot".format(subreddit)
     headers = {"User-Agent": "userAgent"}
     res = requests.get(url, headers=headers, allow_redirects=False)
     if res.status_code == 200:
