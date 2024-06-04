@@ -10,7 +10,7 @@ def recurse(subreddit, hot_list=[]):
         "User-Agent": "useragent"
     }
     res = requests.get(url, headers=headers, allow_redirects=False)
-    if res.status_code == 404:
+    if res.status_code != 200:
         return (None)
     results = res.json()
     for j in results.get("children"):
