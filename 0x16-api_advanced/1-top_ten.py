@@ -11,6 +11,6 @@ def top_ten(subreddit):
     if res.status_code == 200:
         data = res.json()
         for post in data["data"]["children"]:
-            print(post["data"]["title"])
+            return (post["data"]["title"])
     else:
-        print("None")
+        return ("None")
